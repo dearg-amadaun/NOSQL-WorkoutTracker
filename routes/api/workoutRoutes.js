@@ -8,7 +8,9 @@ const {
 } = require('../../controllers/workoutController');
 
 // /api/workouts
-router.route('/').get(getLastWorkout).post(createWorkout);
+router.route('/').get(getLastWorkout);
+
+router.route('/').post(createWorkout);
 
 router.route('/:workoutId').put(addExercise);
 
