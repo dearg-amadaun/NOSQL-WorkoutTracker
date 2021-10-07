@@ -7,7 +7,7 @@ const {
   
 } = require('../../controllers/workoutController');
 
-// /workouts
+// Reference workout controllers to write 
 router.route('/').get(getLastWorkout);
 
 router.route('/').post(createWorkout);

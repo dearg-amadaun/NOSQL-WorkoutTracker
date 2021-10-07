@@ -40,7 +40,10 @@ module.exports = {
     getWorkoutsInRange(req, res) {
         Workout.aggregate([
             { $sort: { _id: -1} },
-            { $limit: 10, },
+          
+            //limit 7 = last 7 days of workouts 
+            { $limit: 7, },
+
             { $addFields: { totalDuration: { $sum: '$exercise.duration'} } }
         ])
     }

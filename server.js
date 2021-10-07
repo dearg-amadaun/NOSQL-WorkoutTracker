@@ -19,7 +19,8 @@ app.use(routes)
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 
-
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server for ${activity} running on port ${PORT}!`);
+  });
 });
