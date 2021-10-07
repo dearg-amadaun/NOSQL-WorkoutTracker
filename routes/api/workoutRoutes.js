@@ -7,13 +7,13 @@ const {
   
 } = require('../../controllers/workoutController');
 
-// /api/workouts
+// /workouts
 router.route('/').get(getLastWorkout);
 
 router.route('/').post(createWorkout);
 
-router.route('/:workoutId').put(addExercise);
+router.route('/:id').put(addExercise);
 
-router.route('/api/workouts/range').get(getWorkoutsInRange);
+router.route('/range').get(getWorkoutsInRange);
 
 module.exports = router;
