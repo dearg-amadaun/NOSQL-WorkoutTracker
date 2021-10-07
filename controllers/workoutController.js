@@ -12,20 +12,20 @@ module.exports = {
     // create a new workout
     createWorkout(req, res) {
       Workout.create(req.body)
-        .then((user) => res.json(user))
+        .then((newWorkout) => res.json(newWorkout))
         .catch((err) => res.status(500).json(err));
     },
-    //add exercise
+    //add exerciseworkouts
     addExercise(req, res) {
         Workout.findOneAndUpdate(
-          { _id: req.params.workoutId },
-          { $set: req.body },
-          { runValidators: true, new: true }
+          { _id: req.params.id },
+          { $push: { exercises: req.body } },
+          { new: true }
         )
-          .then((application) =>
-            !application
+          .then((workout) =>
+            !workout
               ? res.status(404).json({ message: 'No workout with this id!' })
-              : res.json(application)
+              : res.json(workout)
           )
           .catch((err) => {
             console.log(err);
@@ -34,5 +34,14 @@ module.exports = {
       },
 
     //get workouts in range
-    
+    //https://docs.mongodb.com/manual/reference/operator/aggregation/addFields/
+    //https://docs.mongodb.com/manual/reference/operator/aggregation/sum/
+    //https://docs.mongodb.com/manual/reference/operator/aggregation/limit/
+    getWorkoutsInRange(req, res) {
+        Workout.aggregate([
+            { $sort: { _id: -1} },
+            { $limit: 10, },
+            { $addFields: { totalDuration: { $sum: '$exercise.duration'} } }
+        ])
+    }
   };
