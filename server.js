@@ -23,6 +23,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { use
 
 db.once('open', () => {
   app.listen(PORT, () => {
-    console.log(`API server for ${activity} running on port ${PORT}!`);
-  });
+      console.log(`App running on port ${PORT}!`);
+    });
 });
