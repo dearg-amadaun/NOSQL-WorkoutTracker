@@ -25,8 +25,8 @@ mongoose.connect('mongodb://localhost/workoutDB', {
 });
 
 
-db.once('open', () => {
-  app.listen(PORT, () => {
+
+app.listen(PORT, () => {
       console.log(`App running on port ${PORT}!`);
-    });
 });
+
