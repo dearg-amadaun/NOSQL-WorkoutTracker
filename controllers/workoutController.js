@@ -1,14 +1,15 @@
 const { Workout } = require('../models')
 
 //build routes from /public/api.js
-
 module.exports = {
-    // Get last workout
+    
+  // Get last workout
     getLastWorkout(req, res) {
       Workout.find()
         .then((workout) => res.json(workout))
         .catch((err) => res.status(500).json(err));
     },
+
     //add exerciseworkouts
     addExercise(req, res) {
       Workout.findOneAndUpdate(
@@ -26,6 +27,7 @@ module.exports = {
           res.status(500).json(err);
         });
       },
+
       // create a new workout
       createWorkout(req, res) {
         Workout.create(req.body)
@@ -38,13 +40,16 @@ module.exports = {
     //https://docs.mongodb.com/manual/reference/operator/aggregation/sum/
     //https://docs.mongodb.com/manual/reference/operator/aggregation/limit/
     getWorkoutsInRange(req, res) {
-        Workout.aggregate([
-            { $sort: { _id: -1} },
-          
-            //limit 7 = last 7 days of workouts 
-            { $limit: 7, },
-
-            { $addFields: { totalDuration: { $sum: '$exercise.duration'} } }
-        ])
+      Workout.aggregate([
+        { $addFields: { totalDuration: { $sum: "$exercises.duration" } } },
+  
+        { $addFields: { totalWeight: { $sum: "$exercises.weight" } } }, 
+      ])  
+        .sort( { day: -1 } )
+        .limit( 7 )
+        .then((workouts) => {
+          console.log(workouts);
+          res.json(workouts)})
+        .catch((err) => res.status(500).json(err))
     }
   };
