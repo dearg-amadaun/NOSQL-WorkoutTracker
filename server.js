@@ -18,7 +18,11 @@ app.use(express.static("public"));
 
 app.use(routes)
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutDB", { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/workoutDB', {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
 
 
 db.once('open', () => {
