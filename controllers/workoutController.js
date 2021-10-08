@@ -9,30 +9,30 @@ module.exports = {
         .then((workout) => res.json(workout))
         .catch((err) => res.status(500).json(err));
     },
-    // create a new workout
-    createWorkout(req, res) {
-      Workout.create(req.body)
-        .then((newWorkout) => res.json(newWorkout))
-        .catch((err) => res.status(500).json(err));
-    },
     //add exerciseworkouts
     addExercise(req, res) {
-        Workout.findOneAndUpdate(
-          { _id: req.params.id },
-          { $push: { exercises: req.body } },
-          { new: true }
+      Workout.findOneAndUpdate(
+        { _id: req.params.id },
+        { $push: { exercises: req.body } },
+        { new: true }
         )
-          .then((workout) =>
-            !workout
-              ? res.status(404).json({ message: 'No workout with this id!' })
-              : res.json(workout)
-          )
-          .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-          });
+        .then((workout) =>
+        !workout
+        ? res.status(404).json({ message: 'No workout with this id!' })
+        : res.json(workout)
+        )
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json(err);
+        });
       },
-
+      // create a new workout
+      createWorkout(req, res) {
+        Workout.create(req.body)
+          .then((newWorkout) => res.json(newWorkout))
+          .catch((err) => res.status(500).json(err));
+      },
+      
     //get workouts in range
     //https://docs.mongodb.com/manual/reference/operator/aggregation/addFields/
     //https://docs.mongodb.com/manual/reference/operator/aggregation/sum/
