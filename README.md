@@ -1,7 +1,7 @@
   [![License: MIT] (https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   
-  # README Generator.
-  ![redmegenerator](assets\trackergrab.jpg)
+  # Workout Tracker
+  ![redmegenerator](/assets/trackergrab.jpg)
 
   ## Table of Contents
   * [Description](#Description)
