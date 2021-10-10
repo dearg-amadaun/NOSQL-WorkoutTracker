@@ -1,19 +1,16 @@
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+ 
   
   # Workout Tracker
   ![redmegenerator](/assets/trackergrab.jpg)
 
   ## Table of Contents
+  * [License](#License)
   * [Description](#Description)
   * [Installation](#Installation)
-  * [Usage](#Usage)
-  * [License](#License)
-  * [Contributors](#Contributors)
-  * [Tests](#Tests)
   * [Questions](#Questions)
   
   ## License
-  MIT https://opensource.org/licenses/MIT
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
             
   ## Description
   A simple exercise tracking application that allows the user to input exercises with a number of options and to keep track of their progress and stats.
